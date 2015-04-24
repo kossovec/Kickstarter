@@ -1,0 +1,22 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+    <servlet>
+        <servlet-name>Category</servlet-name>
+        <servlet-class>ua.goit.controller.CategoryController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Project</servlet-name>
+        <servlet-class>ua.goit.controller.ProjectController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Category</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Project</servlet-name>
+        <url-pattern>/Project</url-pattern>
+    </servlet-mapping>
+</web-app>
