@@ -1,20 +1,19 @@
 package ua.goit.dao;
 
-public class test {
-  public static void main(String[] args) {
-//    Category category = new Category(1, "Category 5", null);
-//    CategoryDaoImpl categoryDao = new CategoryDaoImpl();
-//    categoryDao.add(category);
-//    for (Category cat: categoryDao.getAll()) {
-//      System.out.println(cat.getCategoryName());
-//    }
-//    System.out.println(categoryDao.getById(3).getCategoryName());
-//    categoryDao.remove(1);
-//
-//    for (Category cat: categoryDao.getAll()) {
-//      System.out.println(cat.getCategoryName());
-//    }
-      CategoryDao categoryDao = new CategoryDaoImpl();
+import ua.goit.model.Category;
+import ua.goit.service.CategoryService;
+import ua.goit.service.CategoryServiceImpl;
 
-  }
+public class test {
+    public static void main(String[] args) {
+        CategoryService categoryService = new CategoryServiceImpl(new CategoryDaoImpl());
+//        categoryService.add(new Category(1, "Art", null));
+//        categoryService.add(new Category(2, "IT", null));
+//        categoryService.add(new Category(3, "Space", null));
+//        categoryService.add(new Category(4, "Games", null));
+        for (Category c : categoryService.getAll()) {
+            System.out.println(c.getCategoryName());
+        }
+
+    }
 }
