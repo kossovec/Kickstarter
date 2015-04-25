@@ -1,8 +1,5 @@
 package ua.goit.dao;
 
-/**
- * Created by kossovec on 24.04.15.
- */
 public class Factory {
   private Factory() {
   }

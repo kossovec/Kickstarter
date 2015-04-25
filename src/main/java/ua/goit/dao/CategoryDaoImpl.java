@@ -14,7 +14,7 @@ public class CategoryDaoImpl implements CategoryDao {
     String sql = "insert into Category(name, timeStamp) values(?,?)";
     try {
       statement = connection.prepareStatement(sql);
-      statement.setString(1,entity.getCategoryName());
+      statement.setString(1, entity.getCategoryName());
       statement.setTimestamp(2, getCurrentTimeStamp());
       statement.execute();
     } catch (SQLException e) {
