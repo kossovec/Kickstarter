@@ -2,16 +2,13 @@ package ua.goit.factory;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.util.Set;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+//import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-import ua.goit.factory.DBConnectionManager;
 
-@WebServlet("/Categories")
+//@WebServlet("/Categories")
 public class PrintOutCategories extends HttpServlet {
 
 	private DBConnectionManager connMgr;

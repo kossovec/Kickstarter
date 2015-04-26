@@ -12,11 +12,10 @@ public class test {
 //      System.out.println(category.getCategoryName());
 //    }
 //    System.out.println(categoryDao.getById(3).getCategoryName());
-    categoryDao.remove(1);
+//    categoryDao.remove(1);
 
     for (Category category: categoryDao.getAll()) {
       System.out.println(category.getCategoryName());
     }
-
   }
 }
