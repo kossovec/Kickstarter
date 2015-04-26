@@ -1,5 +1,7 @@
+<%@ page import="ua.goit.model.Category" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 <html>
 <head>
@@ -7,7 +9,9 @@
 </head>
 <body>
     <c:forEach var="category" items="${categories}">
-        <c:out value="${category.name}"></c:out>
+        <ul>
+            <li> <c:out value="${category.categoryName}"/> </li>
+        </ul>
     </c:forEach>
 </body>
 </html>
