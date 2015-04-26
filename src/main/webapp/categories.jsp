@@ -13,5 +13,10 @@
             <li> <a href="projects?category=<c:out value="${category.id}"/>"> <c:out value="${category.categoryName}"/> </a></li>
         </ul>
     </c:forEach>
+    <form action="categories" method="post">
+        <input type="text" name = "category_name">
+        <br>
+        <input type="submit" value="Create">
+    </form>
 </body>
 </html>
