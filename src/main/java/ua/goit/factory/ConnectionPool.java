@@ -9,7 +9,6 @@ import java.util.Vector;
  * The ConnectionPool class represents a pool of connections to one database.
  */
 public class ConnectionPool {
-	private String name;
 	private String URL;
 	private String user;
 	private String password;
@@ -19,9 +18,8 @@ public class ConnectionPool {
 
 	/** The ConnectionPool constructor calls from DBConnectionManager while creating
 	 * instance of ConnectionPool class, and take parameters value from properties file*/ 
-	public ConnectionPool(String name, String URL, String user,
+	public ConnectionPool(String URL, String user,
 			String password, int maxConn) {
-		this.name = name;
 		this.URL = URL;
 		this.user = user;
 		this.password = password;
@@ -88,7 +86,7 @@ public class ConnectionPool {
 				con.close();
 			}
 			catch (SQLException e) {
-				throw new RuntimeException ("Can't close connection for pool " + name, e);
+				throw new RuntimeException ("Can't close connection for pool ", e);
 			}
 		}
 		freeConnections.removeAllElements();
