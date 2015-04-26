@@ -10,7 +10,7 @@
 <body>
     <c:forEach var="category" items="${categories}">
         <ul>
-            <li> <c:out value="${category.categoryName}"/> </li>
+            <li> <a href="projects?category=<c:out value="${category.id}"/>"> <c:out value="${category.categoryName}"/> </a></li>
         </ul>
     </c:forEach>
 </body>

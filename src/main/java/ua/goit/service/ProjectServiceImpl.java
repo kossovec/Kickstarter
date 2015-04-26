@@ -37,4 +37,9 @@ public class ProjectServiceImpl implements ProjectService {
     public void remove(Integer id) {
         projectDao.remove(id);
     }
+
+    @Override
+    public List<Project> getProjectsByCategoryId(Integer categoryId) {
+        return projectDao.getProjectsByCategoryId(categoryId);
+    }
 }

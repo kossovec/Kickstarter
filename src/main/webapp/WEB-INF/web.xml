@@ -17,6 +17,6 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Project</servlet-name>
-        <url-pattern>/Project</url-pattern>
+        <url-pattern>/projects</url-pattern>
     </servlet-mapping>
 </web-app>
