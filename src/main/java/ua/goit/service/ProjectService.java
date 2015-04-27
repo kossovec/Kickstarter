@@ -1,9 +1,10 @@
-package ua.goit.dao;
+package ua.goit.service;
 
 import ua.goit.model.Project;
 
 import java.util.List;
 
-public interface ProjectDao extends GenericDAO<Project> {
+public interface ProjectService extends GenericService<Project> {
     List<Project> getProjectsByCategoryId(Integer categoryId);
+
 }

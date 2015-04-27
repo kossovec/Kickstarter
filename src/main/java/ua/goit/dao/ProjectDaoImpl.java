@@ -125,10 +125,33 @@ public class ProjectDaoImpl implements ProjectDao {
     Integer id = rs.getInt("id");
     String name = rs.getString("name");
     Integer categoryId = rs.getInt("Category_id");
-    Integer userId = rs.getInt("User_id");
+    Integer userId = rs.getInt("Users_id");
     Category category = categoryDao.getById(categoryId);
     User user = userDao.getById(userId);
     Timestamp timestamp = rs.getTimestamp("timeStamp");
     return new Project(id, name, category, user, timestamp);
   }
+
+  @Override
+  public List<Project> getProjectsByCategoryId(Integer categoryId) {
+    Statement statement = null;
+    Project project = null;
+    List<Project> listWithProject = new ArrayList<>();
+    String sql = "SELECT id, name, timeStamp, Category_id, Users_id FROM Project WHERE Category_id = " + categoryId;
+    try {
+      statement = connection.prepareStatement(sql);
+      ResultSet rs = statement.executeQuery(sql);
+      CategoryDao categoryDao = daoFactory.getCategoryDao();
+      UserDao userDao = daoFactory.getUserDao();
+      while (rs.next()) {
+        project = getProject(rs, categoryDao, userDao);
+        listWithProject.add(project);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return listWithProject;
+  }
 }
+

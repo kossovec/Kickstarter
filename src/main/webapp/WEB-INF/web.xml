@@ -13,10 +13,10 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Category</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/categories</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Project</servlet-name>
-        <url-pattern>/Project</url-pattern>
+        <url-pattern>/projects</url-pattern>
     </servlet-mapping>
 </web-app>
