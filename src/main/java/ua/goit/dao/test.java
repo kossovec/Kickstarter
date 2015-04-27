@@ -9,21 +9,8 @@ import java.util.Calendar;
 import java.util.List;
 
 public class test {
-<<<<<<< HEAD
-  public static void main(String[] args) {
-//    Category category = new Category("Category 5");
-    CategoryDaoImpl categoryDao = new CategoryDaoImpl();
-//    categoryDao.add(category);
-//
-//    for (Category category: categoryDao.getAll()) {
-//      System.out.println(category.getCategoryName());
-//    }
-//    System.out.println(categoryDao.getById(3).getCategoryName());
-//    categoryDao.remove(1);
-=======
     public static void main(String[] args) {
         Timestamp current = new java.sql.Timestamp(Calendar.getInstance().getTime().getTime());
->>>>>>> 57ee57ac1765ce844777ffd09e750dd70873c054
 
 //        UserService userService = new UserServiceImpl(new UserDaoImpl());
 //        User alex = new User(1, "alex", "alex", "kickstarter", 12345, current);
@@ -52,8 +39,5 @@ public class test {
             System.out.println(project.getProjectName());
         }
     }
-<<<<<<< HEAD
   }
-=======
->>>>>>> 57ee57ac1765ce844777ffd09e750dd70873c054
-}
+
