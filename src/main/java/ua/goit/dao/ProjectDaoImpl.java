@@ -14,6 +14,7 @@ public class ProjectDaoImpl implements ProjectDao {
   private final DBConnectionManager connectionManager = DBConnectionManager.getInstance();
   private final DaoFactory daoFactory = Factory.getDaoFactory();
 
+  @Override
   public void add(Project entity) {
     PreparedStatement statement = null;
     String sql = "insert into Project (name, timeStamp, Category_id, Users_id) values(?,?,?,?)";
@@ -33,6 +34,7 @@ public class ProjectDaoImpl implements ProjectDao {
     }
   }
 
+  @Override
   public Project getById(Integer id) {
     Statement statement = null;
     Project project = null;
@@ -56,6 +58,7 @@ public class ProjectDaoImpl implements ProjectDao {
     return project;
   }
 
+  @Override
   public List<Project> getAll() {
     Statement statement = null;
     Project project = null;
@@ -81,6 +84,7 @@ public class ProjectDaoImpl implements ProjectDao {
     return listWithProject;
   }
 
+  @Override
   public void update(Project entity) {
     PreparedStatement statement = null;
     String sql = "UPDATE Project SET name = ?, Category_id =?, Users_id = ? WHERE id = ?";
@@ -100,6 +104,7 @@ public class ProjectDaoImpl implements ProjectDao {
     }
   }
 
+  @Override
   public void remove(Integer id) {
     PreparedStatement statement = null;
     String sql = "DELETE FROM Project WHERE id = ?";
@@ -116,6 +121,32 @@ public class ProjectDaoImpl implements ProjectDao {
     }
   }
 
+  @Override
+  public List<Project> getProjectsByCategoryId(Integer categoryId) {
+    Statement statement = null;
+    Project project = null;
+    List<Project> listWithProject = new ArrayList<>();
+    Connection connection = null;
+    String sql = "SELECT id, name, timeStamp, Category_id, Users_id FROM Project WHERE Category_id = " + categoryId;
+    try {
+      connection = connectionManager.getConnection();
+      statement = connection.prepareStatement(sql);
+      ResultSet rs = statement.executeQuery(sql);
+      CategoryDao categoryDao = daoFactory.getCategoryDao();
+      UserDao userDao = daoFactory.getUserDao();
+      while (rs.next()) {
+        project = getProject(rs, categoryDao, userDao);
+        listWithProject.add(project);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      connectionManager.freeConnection(connection);
+    }
+
+    return listWithProject;
+  }
+
   private Timestamp getCurrentTimeStamp() {
     Date today = new java.util.Date();
     return new Timestamp(today.getTime());
@@ -130,28 +161,6 @@ public class ProjectDaoImpl implements ProjectDao {
     User user = userDao.getById(userId);
     Timestamp timestamp = rs.getTimestamp("timeStamp");
     return new Project(id, name, category, user, timestamp);
-  }
-
-  @Override
-  public List<Project> getProjectsByCategoryId(Integer categoryId) {
-    Statement statement = null;
-    Project project = null;
-    List<Project> listWithProject = new ArrayList<>();
-    String sql = "SELECT id, name, timeStamp, Category_id, Users_id FROM Project WHERE Category_id = " + categoryId;
-    try {
-      statement = connection.prepareStatement(sql);
-      ResultSet rs = statement.executeQuery(sql);
-      CategoryDao categoryDao = daoFactory.getCategoryDao();
-      UserDao userDao = daoFactory.getUserDao();
-      while (rs.next()) {
-        project = getProject(rs, categoryDao, userDao);
-        listWithProject.add(project);
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-
-    return listWithProject;
   }
 }
 

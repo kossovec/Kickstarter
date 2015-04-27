@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class CategoryDaoImpl implements CategoryDao {
   private final DBConnectionManager connectionManager = DBConnectionManager.getInstance();
-
+  @Override
   public void add(Category entity) {
     PreparedStatement statement = null;
     String sql = "insert into Category(name, timeStamp) values(?,?)";
@@ -26,7 +26,7 @@ public class CategoryDaoImpl implements CategoryDao {
       connectionManager.freeConnection(connection);
     }
   }
-
+  @Override
   public Category getById(Integer id) {
     Statement statement = null;
     Category category = null;
@@ -47,7 +47,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
     return category;
   }
-
+  @Override
   public List<Category> getAll() {
     Statement statement = null;
     Category category = null;
@@ -70,16 +70,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
     return listWithCategory;
   }
-
-  private Category getCategory(ResultSet rs) throws SQLException {
-    Category category;
-    Integer id = rs.getInt("id");
-    String name = rs.getString("name");
-    Timestamp timestamp = rs.getTimestamp("timeStamp");
-    category = new Category(id, name, timestamp);
-    return category;
-  }
-
+  @Override
   public void update(Category entity) {
     PreparedStatement statement = null;
     String sql = "UPDATE Category SET name = ?, WHERE id = ? ";
@@ -96,7 +87,7 @@ public class CategoryDaoImpl implements CategoryDao {
       connectionManager.freeConnection(connection);
     }
   }
-
+  @Override
   public void remove(Integer id) {
     PreparedStatement statement = null;
     String sql = "DELETE FROM Category WHERE id = ? ";
@@ -111,6 +102,15 @@ public class CategoryDaoImpl implements CategoryDao {
     } finally {
       connectionManager.freeConnection(connection);
     }
+  }
+
+  private Category getCategory(ResultSet rs) throws SQLException {
+    Category category;
+    Integer id = rs.getInt("id");
+    String name = rs.getString("name");
+    Timestamp timestamp = rs.getTimestamp("timeStamp");
+    category = new Category(id, name, timestamp);
+    return category;
   }
 
   private Timestamp getCurrentTimeStamp() {
