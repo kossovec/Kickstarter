@@ -14,7 +14,7 @@ public class ConnectionPool {
 	private String password;
 	private int maxConn;
 	private int checkedOut;
-	private Vector<Connection> freeConnections = new Vector<>();
+	private Vector<Connection> freeConnections = new Vector<Connection>();
 
 	/** The ConnectionPool constructor calls from DBConnectionManager while creating
 	 * instance of ConnectionPool class, and take parameters value from properties file*/ 

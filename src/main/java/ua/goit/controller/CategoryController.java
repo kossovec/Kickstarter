@@ -1,7 +1,7 @@
 package ua.goit.controller;
 
 import ua.goit.dao.CategoryDao;
-import ua.goit.dao.CategoryDaoImpl;
+import ua.goit.dao.Factory;
 import ua.goit.model.Category;
 import ua.goit.service.CategoryService;
 import ua.goit.service.CategoryServiceImpl;
@@ -18,7 +18,7 @@ public class CategoryController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     resp.setContentType("text/html");
-    CategoryDao categoryDao = new CategoryDaoImpl();
+    CategoryDao categoryDao = Factory.getDaoFactory().getCategoryDao();
     CategoryService categoryService = new CategoryServiceImpl(categoryDao);
     List<Category> categories = categoryService.getAll();
     String url = "/categories.jsp";
@@ -31,7 +31,7 @@ public class CategoryController extends HttpServlet {
   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     resp.setContentType("text/html");
     String categoryName = req.getParameter("category_name");
-    CategoryDao categoryDao = new CategoryDaoImpl();
+    CategoryDao categoryDao = Factory.getDaoFactory().getCategoryDao();
     CategoryService categoryService = new CategoryServiceImpl(categoryDao);
     categoryService.add(new Category(null, categoryName, null));
     List<Category> categories = categoryService.getAll();

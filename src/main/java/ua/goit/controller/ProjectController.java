@@ -1,7 +1,7 @@
 package ua.goit.controller;
 
+import ua.goit.dao.Factory;
 import ua.goit.dao.ProjectDao;
-import ua.goit.dao.ProjectDaoImpl;
 import ua.goit.model.Project;
 import ua.goit.service.ProjectService;
 import ua.goit.service.ProjectServiceImpl;
@@ -20,8 +20,7 @@ public class ProjectController extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     resp.setContentType("text/html");
     Integer categoryId = Integer.parseInt(req.getParameter("category"));
-
-    ProjectDao projectDao = new ProjectDaoImpl();
+    ProjectDao projectDao = Factory.getDaoFactory().getProjectDao();
     ProjectService projectService = new ProjectServiceImpl(projectDao);
     List<Project> projects = projectService.getProjectsByCategoryId(Integer.parseInt(categoryId.toString()));
 
